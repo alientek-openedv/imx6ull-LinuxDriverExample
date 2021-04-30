@@ -290,12 +290,12 @@ int gt9147_probe(struct i2c_client *client, const struct i2c_device_id *id)
     gt9147_write_regs(&gt9147, GT_CTRL_REG, &data, 1); /* 停止软复位 */
     mdelay(100);
 
-    /* 4,初始化GT9147，烧写固件 */
+    /* 4,初始化GT9147，烧写固件 
     gt9147_read_regs(&gt9147, GT_CFGS_REG, &data, 1);
     printk("GT9147 ID =%#X\r\n", data);
     if(data <  GT9147_CT[0]) {
-       gt9147_send_cfg(&gt9147, 0);
-    }
+       gt9147_send_cfg(&gt9147, 0);   芯片内置固件已能够使用，无需下载固件
+    } */
 
     /* 5，input设备注册 */
 	gt9147.input = devm_input_allocate_device(&client->dev);
